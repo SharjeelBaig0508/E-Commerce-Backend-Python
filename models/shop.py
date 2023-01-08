@@ -20,8 +20,8 @@ class Shop(Document):
     address = StringField(required=True)
     geo_location = GeoPointField(required=True)
 
-    ratings = FloatField()
-    total_reviews = IntField()
+    ratings = FloatField(default=0.0)
+    total_reviews = IntField(default=0)
 
     user = ReferenceField('User')
 
