@@ -8,7 +8,7 @@ v1_views = Blueprint('v1_views', __name__, url_prefix='/api/v1')
 
 # All routes available
 all_rules = {
-    'user': [
+    'users': [
         # ROUTE, VIEW, METHODS
         [
             '/user/login',

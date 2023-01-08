@@ -42,7 +42,7 @@ class Shop(Document):
     )
 
     @queryset_manager
-    def objects(doc_cls, queryset: QuerySet):
+    def objects(self, queryset: QuerySet) -> QuerySet:
         return queryset.order_by('-createdAt')
 
     def update(self, **kwargs):

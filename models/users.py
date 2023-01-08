@@ -94,7 +94,7 @@ class User(Document):
         return super().save(**kwargs)
 
     @queryset_manager
-    def objects(doc_cls, queryset: QuerySet):
+    def objects(self, queryset: QuerySet) -> QuerySet:
         return queryset.exclude('password').order_by('-createdAt')
 
     def update(self, **kwargs):
@@ -104,3 +104,17 @@ class User(Document):
 
         kwargs['updatedAt'] = datetime.utcnow()
         return super().update(**kwargs)
+
+# Default Admin
+defaultAdminUser = {
+    'name': 'Default Admin',
+    'email': 'admin@admin.com',
+    'contact_num': '+923123456789',
+    'password': 'Admin@123',
+    'gender': Gender.MALE,
+    'status': Status.ACTIVE,
+    'role': Roles.ADMIN,
+}
+
+if not User.objects(email=defaultAdminUser['email']):
+    adminUser = User(**defaultAdminUser).save()
